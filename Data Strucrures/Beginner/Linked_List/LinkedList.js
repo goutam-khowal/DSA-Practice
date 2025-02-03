@@ -182,6 +182,20 @@ class LinkedList {
   //    yield curr.value
   //   end if
   // end ReverseTraversal
+  reversetraverse() {
+    if (this.tail != null) {
+      let currentNode = this.tail;
+      while (currentNode != this.head) {
+        let prevNode = this.head;
+        while (prevNode.next != currentNode) {
+          prevNode = prevNode.next;
+        }
+        console.log(currentNode.value);
+        currentNode = prevNode;
+      }
+      console.log(currentNode.value);
+    }
+  }
 }
 
 const MyLinkedList = new LinkedList();
@@ -206,3 +220,5 @@ console.log(JSON.stringify(MyLinkedList));
 
 console.log("\n\n**************\nTraversing the Linked List");
 MyLinkedList.traverse();
+console.log("\n\n**************\nReverse Traversing the Linked List");
+MyLinkedList.reversetraverse();
