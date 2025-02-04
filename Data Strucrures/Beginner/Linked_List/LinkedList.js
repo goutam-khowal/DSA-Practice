@@ -161,6 +161,56 @@ class LinkedList {
       return true;
     }
   }
+
+  //*Find*/
+  /*-----Pseudocode for Find-----*/
+  //   Find({ value = undefined, callback = undefined })
+  //  Pre: The linked list may be empty or contain nodes
+  //  Post: Returns the first node that matches the specified value or callback, or null if not found
+  //
+  //  IF head = ø THEN
+  //      RETURN ø // If the list is empty, return null
+  //  END IF
+  //
+  //  currentNode ← head // Start from the head of the list
+  //
+  //  WHILE currentNode ≠ ø DO
+  //      // If a callback is specified, check if it matches the current node's value
+  //      IF callback ≠ ø AND callback(currentNode.value) THEN
+  //          RETURN currentNode // Return the current node if callback matches
+  //      END IF
+  //
+  //      // If a value is specified, check if it matches the current node's value
+  //      IF value ≠ undefined AND compare.equal(currentNode.value, value) THEN
+  //          RETURN currentNode // Return the current node if value matches
+  //      END IF
+  //
+  //      currentNode ← currentNode.next // Move to the next node
+  //  END WHILE
+  //
+  //  RETURN ø // Return null if no matching node is found
+  // end Find
+
+  Find({ value = undefined, callback = undefined }) {
+    if (this.head == null) {
+      return null;
+    }
+    let currentNode = this.head;
+    while (currentNode) {
+      if (callback && callback(currentNode.value)) {
+        return currentNode;
+      }
+
+      if (value !== undefined && this.compare.equal(currentNode.value, value)) {
+        return currentNode;
+      }
+
+      currentNode = currentNode.next;
+    }
+
+    return null;
+  }
+
   //*Delete*/
   /*-----Pseudocode for Delete-----*/
   //     Remove(head, value)
@@ -221,6 +271,66 @@ class LinkedList {
       return true;
     }
     return false;
+  }
+
+  //*DeleteHead*/
+  /*-----Pseudocode for DeleteHead-----*/
+  //   DeleteHead()
+  //  Pre: The linked list may be empty or contain nodes
+  //  Post: The head node is removed from the linked list, and the deleted node is returned
+  //
+  //  IF head = ø THEN
+  //      RETURN ø // If the list is empty, return null
+  //  END IF
+  //
+  //  deletedHead ← head // Store the current head node
+  //
+  //  IF head.next ≠ ø THEN
+  //      head ← head.next // Update head to the next node
+  //  ELSE
+  //      head ← ø // Set head to null (list is now empty)
+  //      tail ← ø // Set tail to null (list is now empty)
+  //  END IF
+  //
+  //  RETURN deletedHead // Return the removed head node
+  // end DeleteHead
+  DeleteHead() {
+    if (!this.head) {
+      return null;
+    }
+    const deleteHead = this.head;
+
+    if (this.head.next) {
+      this.head = this.head.next;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return deleteHead;
+  }
+
+  //*DeleteTail*/
+  /*-----Pseudocode for DeleteTail-----*/
+  DeleteTail() {
+    const deletedTail = this.tail;
+    if (this.head === this.tail) {
+      this.head = null;
+      this.tail = null;
+    }
+
+    let currentNode = this.head;
+    while (currentNode.next) {
+      if (currentNode.next.next == null) {
+        currentNode.next = null;
+      } else {
+        currentNode = currentNode.next;
+      }
+    }
+
+    this.tail = currentNode;
+
+    return deletedTail;
   }
 
   //*Traverse*/
@@ -352,115 +462,6 @@ class LinkedList {
       this.Add(value);
     });
     return this;
-  }
-
-  //*DeleteHead*/
-  /*-----Pseudocode for DeleteHead-----*/
-  //   DeleteHead()
-  //  Pre: The linked list may be empty or contain nodes
-  //  Post: The head node is removed from the linked list, and the deleted node is returned
-  //
-  //  IF head = ø THEN
-  //      RETURN ø // If the list is empty, return null
-  //  END IF
-  //
-  //  deletedHead ← head // Store the current head node
-  //
-  //  IF head.next ≠ ø THEN
-  //      head ← head.next // Update head to the next node
-  //  ELSE
-  //      head ← ø // Set head to null (list is now empty)
-  //      tail ← ø // Set tail to null (list is now empty)
-  //  END IF
-  //
-  //  RETURN deletedHead // Return the removed head node
-  // end DeleteHead
-  DeleteHead() {
-    if (!this.head) {
-      return null;
-    }
-    const deleteHead = this.head;
-
-    if (this.head.next) {
-      this.head = this.head.next;
-    } else {
-      this.head = null;
-      this.tail = null;
-    }
-
-    return deleteHead;
-  }
-
-  //*DeleteTail*/
-  /*-----Pseudocode for DeleteTail-----*/
-  DeleteTail() {
-    const deletedTail = this.tail;
-    if (this.head === this.tail) {
-      this.head = null;
-      this.tail = null;
-    }
-
-    let currentNode = this.head;
-    while (currentNode.next) {
-      if (currentNode.next.next == null) {
-        currentNode.next = null;
-      } else {
-        currentNode = currentNode.next;
-      }
-    }
-
-    this.tail = currentNode;
-
-    return deletedTail;
-  }
-
-  //*Find*/
-  /*-----Pseudocode for Find-----*/
-  //   Find({ value = undefined, callback = undefined })
-  //  Pre: The linked list may be empty or contain nodes
-  //  Post: Returns the first node that matches the specified value or callback, or null if not found
-  //
-  //  IF head = ø THEN
-  //      RETURN ø // If the list is empty, return null
-  //  END IF
-  //
-  //  currentNode ← head // Start from the head of the list
-  //
-  //  WHILE currentNode ≠ ø DO
-  //      // If a callback is specified, check if it matches the current node's value
-  //      IF callback ≠ ø AND callback(currentNode.value) THEN
-  //          RETURN currentNode // Return the current node if callback matches
-  //      END IF
-  //
-  //      // If a value is specified, check if it matches the current node's value
-  //      IF value ≠ undefined AND compare.equal(currentNode.value, value) THEN
-  //          RETURN currentNode // Return the current node if value matches
-  //      END IF
-  //
-  //      currentNode ← currentNode.next // Move to the next node
-  //  END WHILE
-  //
-  //  RETURN ø // Return null if no matching node is found
-  // end Find
-
-  Find({ value = undefined, callback = undefined }) {
-    if (this.head == null) {
-      return null;
-    }
-    let currentNode = this.head;
-    while (currentNode) {
-      if (callback && callback(currentNode.value)) {
-        return currentNode;
-      }
-
-      if (value !== undefined && this.compare.equal(currentNode.value, value)) {
-        return currentNode;
-      }
-
-      currentNode = currentNode.next;
-    }
-
-    return null;
   }
 }
 
