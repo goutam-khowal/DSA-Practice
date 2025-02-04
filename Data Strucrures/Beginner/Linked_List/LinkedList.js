@@ -429,7 +429,7 @@ class LinkedList {
   //  currentNode ← head // Start with the head of the list
   //
   //  WHILE currentNode ≠ ø DO
-  //      nodes.push(currentNode) // Add the current node to the array
+  //      nodes.push(currentNode.value) // Add the current node to the array
   //      currentNode ← currentNode.next // Move to the next node
   //  END WHILE
   //
@@ -439,7 +439,7 @@ class LinkedList {
     let nodes = [];
     let currentNode = this.head;
     while (currentNode) {
-      nodes.push(currentNode);
+      nodes.push(currentNode.value);
       currentNode = currentNode.next;
     }
     return nodes;
