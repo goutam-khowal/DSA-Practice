@@ -12,10 +12,10 @@ class LinkedList {
   }
 
   //*Insert*/
-  /*-----Pseudocode for adding at end (appending)-----*/
+  /*-----Pseudocode for Adding at end (appending)-----*/
 
   //   Add(value)
-  //   Pre: value is the value to add to the list
+  //   Pre: value is the value to Add to the list
   //   Post: value has been placed at the tail of the list
   //   n ← node(value)
   //   if head = ø
@@ -27,7 +27,7 @@ class LinkedList {
   //   end if
   // end Add
 
-  add(value) {
+  Add(value) {
     const newNode = new Node(value);
     if (this.head == null) {
       this.head = newNode;
@@ -38,9 +38,10 @@ class LinkedList {
     }
   }
 
-  /*-----Pseudocode for prepending-----*/
+  //*Insert*/
+  /*-----Pseudocode for Prepending-----*/
   //   Prepend(value)
-  //  Pre: value is the value to add to the list
+  //  Pre: value is the value to Add to the list
   //  Post: value has been placed at the head of the list
   //  n ← node(value)
   //  n.next ← head
@@ -49,7 +50,7 @@ class LinkedList {
   //    tail ← n
   //  end
   // end Prepend
-  prepend(value) {
+  Prepend(value) {
     const newNode = new Node(value);
     newNode.next = this.head;
     this.head = newNode;
@@ -57,6 +58,44 @@ class LinkedList {
       this.tail = newNode;
     }
   }
+  //*Insert*/
+  /*-----Pseudocode for InsertAt-----*/
+  //   InsertAt(value, rawIndex)
+  //  Pre: value is the value to Add to the list
+  //       rawIndex is the position at which to insert the value
+  //  Post: value has been inserted at the specified index in the list
+  //  index ← IF rawIndex < 0 THEN 0 ELSE rawIndex
+  //  IF index = 0 THEN
+  //      CALL Prepend(value) // Insert at the head of the list
+  //  ELSE
+  //      count ← 1
+  //      currentNode ← head
+  //      newNode ← node(value) // Create a new node with the given value
+  //
+  //      WHILE currentNode ≠ ø DO
+  //          IF count = index THEN
+  //              BREAK // Found the position to insert
+  //          END IF
+  //          currentNode ← currentNode.next
+  //          count ← count + 1
+  //      END WHILE
+  //
+  //      IF currentNode ≠ ø THEN
+  //          newNode.next ← currentNode.next // Link new node to the next node
+  //          currentNode.next ← newNode // Link current node to the new node
+  //      ELSE
+  //          IF tail ≠ ø THEN
+  //              tail.next ← newNode // Link the last node to the new node
+  //              tail ← newNode // Update the tail to the new node
+  //          ELSE
+  //              head ← newNode // If the list was empty, set head to the new node
+  //              tail ← newNode // Set tail to the new node as well
+  //          END IF
+  //      END IF
+  //  END IF
+  //
+  //  RETURN this // Return the updated linked list instance
+  // end InsertAt
 
   //*Search*/
   /*-----Pseudocode for Search-----*/
@@ -73,7 +112,7 @@ class LinkedList {
   //   end if
   //   return true
   // end Contains
-  contains(value) {
+  Contains(value) {
     let currentNode = this.head; //no need to take head as an arg
     while (currentNode != null && currentNode.value !== value) {
       currentNode = currentNode.next;
@@ -117,7 +156,7 @@ class LinkedList {
   //   end if
   //   return false
   // end Remove
-  delete(value) {
+  Delete(value) {
     if (this.head == null) {
       return false;
     }
@@ -150,14 +189,14 @@ class LinkedList {
   /*-----Pseudocode for Traverse-----*/
   //   Traverse(head)
   //   Pre: head is the head node in the list
-  //   Post: the items in the list have been traversed
+  //   Post: the items in the list have been tTaversed
   //   n ← head
   //   while n != ø
   //     yield n.value
   //     n ← n.next
   //   end while
   // end Traverse
-  traverse() {
+  Traverse() {
     let currentNode = this.head;
     while (currentNode != null) {
       console.log(currentNode.value);
@@ -168,7 +207,7 @@ class LinkedList {
   /*-----Pseudocode for Traverse in reverse-----*/
   // ReverseTraversal(head, tail)
   //   Pre: head and tail belong to the same list
-  //   Post: the items in the list have been traversed in reverse order
+  //   Post: the items in the list have been tTaversed in reverse order
   //   if tail != ø
   //     curr ← tail
   //     while curr != head
@@ -182,7 +221,7 @@ class LinkedList {
   //    yield curr.value
   //   end if
   // end ReverseTraversal
-  reversetraverse() {
+  ReverseTraverse() {
     if (this.tail != null) {
       let currentNode = this.tail;
       while (currentNode != this.head) {
@@ -200,25 +239,25 @@ class LinkedList {
 
 const MyLinkedList = new LinkedList();
 
-MyLinkedList.add(56);
-MyLinkedList.prepend(1);
-MyLinkedList.prepend(1002);
-MyLinkedList.prepend(12);
-MyLinkedList.prepend(102);
-MyLinkedList.prepend(100);
+MyLinkedList.Add(56);
+MyLinkedList.Prepend(1);
+MyLinkedList.Prepend(1002);
+MyLinkedList.Prepend(12);
+MyLinkedList.Prepend(102);
+MyLinkedList.Prepend(100);
 
 console.log("\n\n**************\n\nResults:\n");
 console.log(JSON.stringify(MyLinkedList));
 console.log("\n**************\n");
-console.log("Contains 1002 : " + MyLinkedList.contains(1002) + "\n");
-console.log("Contains 1 : " + MyLinkedList.contains(1) + "\n");
+console.log("Contains 1002 : " + MyLinkedList.Contains(1002) + "\n");
+console.log("Contains 1 : " + MyLinkedList.Contains(1) + "\n");
 
-MyLinkedList.delete(1);
+MyLinkedList.Delete(1);
 
-console.log("\n\n**************\n\nResults after delete:\n");
+console.log("\n\n**************\n\nResults after Delete:\n");
 console.log(JSON.stringify(MyLinkedList));
 
 console.log("\n\n**************\nTraversing the Linked List");
-MyLinkedList.traverse();
+MyLinkedList.Traverse();
 console.log("\n\n**************\nReverse Traversing the Linked List");
-MyLinkedList.reversetraverse();
+MyLinkedList.ReverseTraverse();
