@@ -199,8 +199,8 @@ end DeleteTail
 
 #### 8. ToString
 
-> Description:
-> This method returns a string representation of the doubly linked list, joining node values with " <-> ". Unlike JSON.stringify(object), it correctly displays the list's structure.
+> **Description:**  
+> ToString is implemented to overcome JSON.stringify’s circular reference error by traversing the doubly linked list. It collects each node’s value and concatenates them with " <-> ", producing a human-readable string output.
 
 ```
  ToString()
