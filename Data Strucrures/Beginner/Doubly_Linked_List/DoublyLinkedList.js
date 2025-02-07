@@ -46,6 +46,32 @@ class DoublyLinkedList {
     }
   }
 
+  //*ToString*/
+  /*-----Pseudocode for ToString---*/
+  // ToString()
+  //   Pre: The doubly linked list may be empty or contain nodes
+  //   Post: Returns a string representation of the list, with values joined by " <-> "
+  //   currentNode ← this.head // Start from the head of the list
+  //   values ← [] // Initialize an empty array to hold the node values
+  //
+  //   // Traverse the linked list
+  //   while currentNode != null do
+  //       values.push(currentNode.value) // Add the current node's value to the array
+  //       currentNode ← currentNode.next // Move to the next node
+  //   end while
+  //
+  //   return values.join(" <-> ") // Join the values with " <-> " and return the string
+  // end ToString
+  ToString() {
+    let currentNode = this.head;
+    const values = [];
+    while (currentNode) {
+      values.push(currentNode.value);
+      currentNode = currentNode.next;
+    }
+    return values.join(" <-> ");
+  }
+
   //*ReverseTraverse*/
   /*-----Pseudocode for ReverseTraversal---*/
   //   ReverseTraverse()
@@ -210,6 +236,93 @@ class DoublyLinkedList {
     }
     return null;
   }
+
+  //*DeleteTail()*/
+  /*-----Pseudocode for DeleteTail()-----*/
+  //   DeleteTail()
+  //   Pre: The doubly linked list may be empty or contain nodes
+  //   Post: Removes the tail node from the list and returns it, or returns null if the list is empty
+  //
+  //   // Check if there is no tail to delete
+  //   IF this.tail = null THEN
+  //       RETURN null // No tail to delete
+  //   END IF
+  //
+  //   // Check if there is only one node in the linked list
+  //   IF this.head = this.tail THEN
+  //       deletedTail ← this.tail // Store the tail node to return
+  //       this.head ← null // Set head to null
+  //       this.tail ← null // Set tail to null
+  //       RETURN deletedTail // Return the deleted tail node
+  //   END IF
+  //
+  //   // If there are multiple nodes in the linked list
+  //   deletedTail ← this.tail // Store the tail node to return
+  //   this.tail ← this.tail.previous // Move the tail pointer to the previous node
+  //   this.tail.next ← null // Set the new tail's next reference to null
+  //
+  //   RETURN deletedTail // Return the deleted tail node
+  // end DeleteTail
+  DeleteTail() {
+    if (this.tail == null) {
+      return null;
+    }
+
+    if (this.head == this.tail) {
+      let deletedTail = this.tail;
+      this.head = null;
+      this.tail = null;
+      return deletedTail;
+    }
+
+    let deletedTail = this.tail;
+    this.tail = this.tail.previous;
+    this.tail.next = null;
+
+    return deletedTail;
+  }
+
+  //*DeleteHead()*/
+  /*-----Pseudocode for DeleteHead()-----*/
+  //   DeleteHead()
+  //   Pre: The doubly linked list may be empty or contain nodes
+  //   Post: Removes the head node from the list and returns it, or returns null if the list is empty
+  //
+  //   // Check if the list is empty
+  //   IF this.head = null THEN
+  //       RETURN null // No head to delete
+  //   END IF
+  //
+  //   deletedHead ← this.head // Store the head node to return
+  //
+  //   // Check if there is more than one node in the list
+  //   IF this.head.next ≠ null THEN
+  //       this.head ← this.head.next // Move head pointer to the next node
+  //       this.head.previous ← null // Set the new head's previous reference to null
+  //   ELSE
+  //       // If there is only one node in the list
+  //       this.head ← null // Set head to null
+  //       this.tail ← null // Set tail to null
+  //   END IF
+  //
+  //   RETURN deletedHead // Return the deleted head node
+  // end DeleteHead
+  DeleteHead() {
+    if (this.head == null) {
+      return null;
+    }
+
+    const deletedHead = this.head;
+    if (this.head.next) {
+      this.head = this.head.next;
+      this.head.previous = null;
+    } else {
+      this.head = null;
+      this.tail = null;
+    }
+
+    return deletedHead;
+  }
 }
 
 const MyList = new DoublyLinkedList();
@@ -217,9 +330,16 @@ MyList.Append("Third");
 MyList.Prepend("Second");
 MyList.Append("Fourth");
 MyList.Prepend("First");
+console.log(MyList.ToString());
 MyList.Delete("Third");
 MyList.Delete("Second");
 
 MyList.Traverse();
 console.log();
 MyList.ReverseTraverse();
+console.log();
+console.log("deleted tail: " + JSON.stringify(MyList.DeleteTail()));
+console.log();
+console.log(MyList.ToString());
+
+//27 minutes
