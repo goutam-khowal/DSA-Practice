@@ -203,18 +203,18 @@ end DeleteTail
 > This method returns a string representation of the doubly linked list, joining node values with " <-> ". Unlike JSON.stringify(object), it correctly displays the list's structure.
 
 ```
-// ToString()
-//   Pre: The doubly linked list may be empty or contain nodes
-//   Post: Returns a string representation of the list, with values joined by " <-> "
-//   currentNode ← this.head // Start from the head of the list
-//   values ← [] // Initialize an empty array to hold the node values
-//
-//   // Traverse the linked list
-//   while currentNode != null do
-//       values.push(currentNode.value) // Add the current node's value to the array
-//       currentNode ← currentNode.next // Move to the next node
-//   end while
-//
-//   return values.join(" <-> ") // Join the values with " <-> " and return the string
-// end ToString
+ ToString()
+   Pre: The doubly linked list may be empty or contain nodes
+   Post: Returns a string representation of the list, with values joined by " <-> "
+   currentNode ← this.head // Start from the head of the list
+   values ← [] // Initialize an empty array to hold the node values
+
+   // Traverse the linked list
+   while currentNode != null do
+       values.push(currentNode.value) // Add the current node's value to the array
+       currentNode ← currentNode.next // Move to the next node
+   end while
+
+   return values.join(" <-> ") // Join the values with " <-> " and return the string
+ end ToString
 ```
