@@ -502,7 +502,7 @@ class DoublyLinkedList {
 
   // RETURN null // No matching node found
   // end find
-  find({ value = undefined, callback = undefined }) {
+  Find({ value = undefined, callback = undefined }) {
     if (this.head === null) {
       return null;
     }
@@ -627,7 +627,7 @@ console.log("\n------L-I-N-E--O-F--S-E-P-A-R-A-T-I-O-N------\n");
 
 console.log("Finding first even number:");
 console.log(
-  MyList.find({
+  MyList.Find({
     callback: (value) => value % 2 === 0,
   })
 );
@@ -642,7 +642,7 @@ function specificEven(targetValue) {
 
 console.log("Finding specific even number (60):");
 console.log(
-  MyList.find({
+  MyList.Find({
     callback: specificEven(60),
   })
 );
@@ -650,7 +650,7 @@ console.log("\n------L-I-N-E--O-F--S-E-P-A-R-A-T-I-O-N------\n");
 
 console.log("Finding even number with value 180:");
 console.log(
-  MyList.find({
+  MyList.Find({
     value: 180,
     callback: (value) => value % 2 === 0,
   })
