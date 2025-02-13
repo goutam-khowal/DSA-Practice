@@ -503,21 +503,19 @@ class DoublyLinkedList {
   // RETURN null // No matching node found
   // end find
   Find({ value = undefined, callback = undefined }) {
-    if (this.head === null) {
-      return null;
-    }
+    if (!this.head) return null;
 
     let currentNode = this.head;
 
     while (currentNode) {
-      if (callback !== undefined && value !== undefined) {
+      if (callback && value !== undefined) {
         if (
           this.compare.equal(currentNode.value, value) &&
           callback(currentNode.value)
         ) {
           return currentNode;
         }
-      } else if (callback !== undefined && callback(currentNode.value)) {
+      } else if (callback && callback(currentNode.value)) {
         return currentNode;
       } else if (
         value !== undefined &&
@@ -528,6 +526,7 @@ class DoublyLinkedList {
 
       currentNode = currentNode.next;
     }
+
     return null;
   }
 
