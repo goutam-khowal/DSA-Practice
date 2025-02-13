@@ -1,5 +1,22 @@
 # Doubly Linked List Operations Pseudocodes
+##### 0. Node and Linked List
+```
+class Node {
+  constructor(value, next = null, previous = null) {
+    this.value = value;
+    this.next = next;
+    this.previous = previous;
+  }
+}
 
+class DoublyLinkedList {
+  constructor() {
+    this.head = null;
+    this.tail = null;
+  }
+//methods
+}
+```
 ##### 1. Append (Add at End)
 ```
 // Pseudocode for Append
