@@ -6,7 +6,7 @@
 Append(value)
 Pre: value is the value to add to the end of the doubly linked list
 Post: A new node with the given value is added at the tail of the list
-newNode ← new DoublyLinkedListNode(value) // Create a new node with the given value
+newNode ← new Node(value) // Create a new node with the given value
 
 // If there is no head yet, make the new node the head and tail
 if this.head = null THEN
