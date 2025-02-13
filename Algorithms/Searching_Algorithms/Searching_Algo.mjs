@@ -106,7 +106,7 @@ class SearchAlgo {
     }
 
     const length = arr.length;
-    const jump = Math.floor(Math.sqrt(length));
+    let jump = Math.floor(Math.sqrt(length));
     let prev = 0;
 
     while (arr[Math.min(jump, length) - 1] < target) {
@@ -180,3 +180,5 @@ const end = new Date();
 
 console.log(search.LinearSearch([1, 2, 3, 6, 4, 8, 9, 80, 1, 1, 20], 1));
 console.log(search.BinarySearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
+console.log(search.JumpSearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
+console.log(search.InterpolationSearch([1, 2, 3, 4, 5, 6, 7, 8, 9, 10], 5));
