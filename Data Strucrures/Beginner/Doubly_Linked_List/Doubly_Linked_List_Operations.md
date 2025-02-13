@@ -291,43 +291,41 @@ end DeleteRange
 ```
 #### 11. Find
 ```
-find({ value = undefined, callback = undefined })
-   Pre: The doubly linked list may be empty or contain nodes
-   Post: Returns the first node that matches the specified value or callback, or null if not found
+// Find({ value = undefined, callback = undefined })
+// Precondition: The doubly linked list may be empty or contain nodes
+// Postcondition: Returns the first node that matches the specified value or callback, or null if not found
 
-   // Check if the list is empty
-   IF this.head IS null THEN
-       RETURN null // List is empty
-   END IF
+FUNCTION Find(value = undefined, callback = undefined)
+    // If the list is empty, return null
+    IF this.head IS null THEN
+        RETURN null
+    END IF
 
-   // Initialize currentNode to the head of the list
-   currentNode ← this.head
+    // Start from the head of the list
+    currentNode ← this.head
 
-   // Traverse the linked list
-   WHILE currentNode IS NOT null DO
-       // Check if both value and callback are provided
-       IF callback IS NOT undefined AND value IS NOT undefined THEN
-           // Check if the current node's value matches and the callback returns true
-           IF this.compare.equal(currentNode.value, value) AND callback(currentNode.value) THEN
-               RETURN currentNode // Return if both conditions are met
-           END IF
-       END IF
+    // Traverse the list
+    WHILE currentNode IS NOT null DO
+        // If both value and callback are provided
+        IF callback IS NOT null AND value IS NOT undefined THEN
+            IF this.compare.equal(currentNode.value, value) AND callback(currentNode.value) THEN
+                RETURN currentNode  // Return if both conditions are met
+            END IF
+        // If only callback is provided
+        ELSE IF callback IS NOT null AND callback(currentNode.value) THEN
+            RETURN currentNode  // Return if callback condition is met
+        // If only value is provided
+        ELSE IF value IS NOT undefined AND this.compare.equal(currentNode.value, value) THEN
+            RETURN currentNode  // Return if value matches
+        END IF
 
-       // Check if only callback is provided
-       IF callback IS NOT undefined AND callback(currentNode.value) THEN
-           RETURN currentNode // Return if callback returns true
-       END IF
+        // Move to the next node
+        currentNode ← currentNode.next
+    END WHILE
 
-       // Check if only value is provided
-       IF value IS NOT undefined AND this.compare.equal(currentNode.value, value) THEN
-           RETURN currentNode // Return if value matches
-       END IF
-
-       currentNode ← currentNode.next // Move to the next node
-   END WHILE
-
-   RETURN null // No matching node found
-end find
+    // No matching node found
+    RETURN null
+END FUNCTION
 ```
 
 #### 12. ToArray
