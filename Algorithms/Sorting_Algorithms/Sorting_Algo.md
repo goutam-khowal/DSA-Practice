@@ -1,4 +1,4 @@
-# Searching Algorithms
+# Sorting Algorithms
 
 ##### 1. BubbleSort
 
