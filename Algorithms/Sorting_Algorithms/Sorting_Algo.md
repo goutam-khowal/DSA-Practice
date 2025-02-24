@@ -194,6 +194,9 @@ END FUNCTION
 ```
 
 ##### 7. ShellSort
+END FUNCTION
+```
+/*----- Pseudocode for ShellSort({array}) -----*/
 /* 
 Pre: array may be empty or contain comparable elements.
 Post: array is sorted in ascending order.
@@ -214,10 +217,6 @@ FUNCTION ShellSort(array)
         gap ← FLOOR(gap / 2)
     END WHILE
     RETURN array
-END FUNCTION
-```
-/*----- Pseudocode for ShellSort({array}) -----*/
-
 ```
 
 ##### 8. MergeSort
