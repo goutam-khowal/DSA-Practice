@@ -216,6 +216,7 @@ FUNCTION ShellSort(array)
         gap ← FLOOR(gap / 2)
     END WHILE
     RETURN array
+END FUNCTION
 ```
 
 ##### 8. MergeSort
