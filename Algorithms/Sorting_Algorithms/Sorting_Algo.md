@@ -194,7 +194,6 @@ END FUNCTION
 ```
 
 ##### 7. ShellSort
-END FUNCTION
 ```
 /*----- Pseudocode for ShellSort({array}) -----*/
 /* 
